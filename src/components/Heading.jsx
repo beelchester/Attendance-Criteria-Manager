@@ -7,7 +7,7 @@ let  fulfill = true
   
   
   return (
-    <div className=' text-[20px] font-poppins font-semibold ml-7 ' >
+    <div className=' mb-5 text-[20px] font-poppins font-semibold mx-7 ' >
       {returnFulfill}
     </div>
   )

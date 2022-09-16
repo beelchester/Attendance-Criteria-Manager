@@ -7,13 +7,18 @@ module.exports = {
       fontFamily: {
         poppins: ["Poppins", "sans-serif"],
       },
+      colors:{
+        primary : "#101820FF",
+        secondary :"#0d131a",
+        accent:"#FEE715FF"
+      }
     },
     screens: {
-      xs: "480px",
+  
       ss: "620px",
       sm: "768px",
-      md: "1060px",
-      lg: "1200px",
+      md: "960px",
+      lg: "1250px",
       xl: "1700px",
     },
   },
