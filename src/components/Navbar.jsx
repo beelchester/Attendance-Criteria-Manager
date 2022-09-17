@@ -1,19 +1,19 @@
 import { useState } from "react";
 import Popup from "./Popup";
-const Navbar = () => {
+const Navbar = (props) => {
   const [addSub, setAddSub] = useState(false);
 
   function toggleAddSub() {
     setAddSub((prev) => !prev);
   }
 
-  const [subData, setSubData] = useState({
+  const [newSubData, setNewSubData] = useState({
     name: "",
     classesAttended: "",
     totalClasses: "",
   });
   function handleAddSubChange(event) {
-    setSubData((prevData) => {
+    setNewSubData((prevData) => {
       return {
         ...prevData,
         [event.target.name]: event.target.value,
@@ -23,10 +23,17 @@ const Navbar = () => {
   function handleAddSubSubmit(event) {
     event.preventDefault()
     toggleAddSub()
-    console.log(subData)
-    console.log((subData.classesAttended / subData.totalClasses )*100+'%')
-
-}  const subPopup = addSub ? (
+    props.onClk(newSubData)
+    console.log((newSubData.classesAttended / newSubData.totalClasses )*100+'%')
+    setNewSubData((prevData) => {
+      return {
+          name: "",
+          classesAttended: "",
+          totalClasses: "",
+      };
+    });
+}  
+const subPopup = addSub ? (
     <Popup>
       <form className="flex flex-col">
         <h3 className="text-white font-poppins font-semibold">Subject Name:</h3>
@@ -35,7 +42,7 @@ const Navbar = () => {
           name="name"
           onChange={handleAddSubChange}
           className="rounded px-3 mt-3 mb-6"
-          value={subData.name}
+          value={newSubData.name}
         />
         <h3 className="text-white font-poppins font-semibold">
           Classes Attended:
@@ -46,7 +53,7 @@ const Navbar = () => {
             onChange={handleAddSubChange}
             type="text"
             className="rounded px-3 my-3 mr-3 w-16"
-            value={subData.classesAttended}
+            value={newSubData.classesAttended}
           />
           <h3 className="text-white font-poppins"> Out Of</h3>
           <input
@@ -54,7 +61,7 @@ const Navbar = () => {
             onChange={handleAddSubChange}
             type="text"
             className="rounded px-3 ml-3 my-3 w-16"
-            value={subData.totalClasses}
+            value={newSubData.totalClasses}
           />
         </div>
         <button

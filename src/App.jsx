@@ -4,11 +4,17 @@ import Heading from "./components/Heading";
 import Leave from "./components/Leave";
 import Card from "./components/Card";
 function App() {
-
+  const [subData, setSubData] = useState([])
+  function click(object){
+    setSubData((prev)=>{
+      return [...prev, object]
+    })
+  }
+  console.log(subData)
   
   return (
     <div className="w-[100%]  h-[100vh]  ">
-      <Navbar />
+      <Navbar onClk={click} />
       <div className="my-8 flex justify-between items-center">
         <Heading />
         <Leave />
