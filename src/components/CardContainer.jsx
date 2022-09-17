@@ -11,6 +11,7 @@ const CardContainer = (props) => {
            name={item.name}
            classesAttended={item.classesAttended}
            totalClasses={item.totalClasses}
+           
          />
        ))}
    </div>

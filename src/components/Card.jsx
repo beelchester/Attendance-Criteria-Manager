@@ -32,24 +32,30 @@ const Card = (props) => {
   ) : (
     ""
   );
+  const a = parseInt(props.classesAttended)
+  const b = parseInt(props.totalClasses)
   const percent = (props.classesAttended / props.totalClasses )*100
   const roundedPercent = parseFloat(percent).toFixed(2)
-  const percentText = roundedPercent>= 75 ?(<h3 className="text-greenT font-sans font-semibold mt-8">{roundedPercent+'%'}</h3>):(<h3 className="text-redT font-sans font-semibold mt-8">{roundedPercent+'%'}</h3>)
-  const a = props.classesAttended
-  const b = props.totalClasses
-  const c = 0.75 * b
-  const d = c.toFixed(0)
-  const classesRequired = d-a
-  console.log(classesRequired)
+  const percentText = roundedPercent>= 75 ?(<h3 className="text-greenT font-sans font-semibold mt-5">{roundedPercent+'%'}</h3>):(<h3 className="text-redT font-sans font-semibold mt-5">{roundedPercent+'% '}</h3>)
+  let i
+  let j 
+  let classesRequired 
+
+  for(i=a+1,j=b+1 ; i>a, j>b; i++,j++){
+    if(i/j >= 0.75){
+      classesRequired = i
+      break
+    }
+  }
   return (
     <div className="h-[18rem] w-[18rem] bg-[#090d11bd] rounded-xl ring ring-[#0000007c] p-3 text-center">
       {editPopup}
       <h1 className="text-[#a0c4f0] font-poppins font-semibold uppercase text-3xl mt-2  ">
         {props.name}
       </h1>
-      {/* <h3 className='text-greenT font-sans font-semibold'>82%</h3> */}
       {percentText}
-      <h3 className=" font-sans font-semibold my-3 text-white">
+      <p className="text-white font-poppins font-semibold text-xs mt-1">({a}/{b})</p>
+      <h3 className=" font-sans font-semibold  mt-6 text-white">
         {roundedPercent >=75?`Keep maintaining the attendance :)`:`You need to attend atleast the next ${classesRequired} classes`}
       </h3>
       <button

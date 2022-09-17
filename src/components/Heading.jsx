@@ -1,17 +1,18 @@
 import React from "react";
 
-const Heading = () => {
+const Heading = (props) => {
   let fulfill = false;
+
   const returnFulfill = fulfill ? (
     <h1 className="text-greenT">
-      You fulfill the 75% Attendance criteria for all subjects
+      You fulfill the Minimum Attendance criteria 
     </h1>
   ) : (
     <div>
     <h1 className="text-redT ">
-      You are Low on attendance for the following subject/'s
+      You are Low on attendance
     </h1>
-    <p className="text-base text-white mt-2">DSA - 68%</p>
+  
     </div>
   );
 

@@ -16,7 +16,7 @@ function App() {
     <div className="w-[100%]  h-[100vh]  ">
       <Navbar onClk={click} />
       <div className="my-8 flex justify-between items-center">
-        <Heading />
+         <Heading/>
         <Leave />
       </div>
       <div className="flex justify-center mt-20 mx-7 ">
