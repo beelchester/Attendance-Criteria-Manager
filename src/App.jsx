@@ -10,15 +10,25 @@ function App() {
       return [...prev, object]
     })
   }
-  console.log(subData)
+ let headCondition = true
+  subData.map((item) => {
+    const percent = (item.classesAttended / item.totalClasses )*100
+    const roundedPercent = parseFloat(percent).toFixed(2)
+    if (roundedPercent < 75) {
+      headCondition = false
+    }
+})
+
   
   return (
     <div className="w-[100%]  h-[100vh]  ">
       <Navbar onClk={click} />
+        {subData.length===0? (""):(
       <div className="my-8 flex justify-between items-center">
-         <Heading/>
+         <Heading condition={headCondition} />
         <Leave />
       </div>
+        )}
       <div className="flex justify-center mt-20 mx-7 ">
           <CardContainer subData={subData} />
        

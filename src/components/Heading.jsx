@@ -1,7 +1,7 @@
 import React from "react";
 
 const Heading = (props) => {
-  let fulfill = false;
+  let fulfill = props.condition;
 
   const returnFulfill = fulfill ? (
     <h1 className="text-greenT">
@@ -12,7 +12,7 @@ const Heading = (props) => {
     <h1 className="text-redT ">
       You are Low on attendance
     </h1>
-  
+
     </div>
   );
 
