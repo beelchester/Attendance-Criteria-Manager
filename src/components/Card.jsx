@@ -43,7 +43,7 @@ const Card = (props) => {
 
   for(i=a+1,j=b+1 ; i>a, j>b; i++,j++){
     if(i/j >= 0.75){
-      classesRequired = i
+      classesRequired = i-a
       break
     }
   }

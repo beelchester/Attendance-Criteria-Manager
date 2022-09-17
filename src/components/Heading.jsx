@@ -17,7 +17,7 @@ const Heading = (props) => {
   );
 
   return (
-    <div className=" mb-5 text-[20px] font-sans font-semibold mx-7 tracking-wide ">
+    <div className=" mb-5 text-[25px] font-sans font-semibold mx-7 tracking-wide ">
       {returnFulfill}
     </div>
   );
