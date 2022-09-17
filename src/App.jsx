@@ -4,6 +4,8 @@ import Heading from "./components/Heading";
 import Leave from "./components/Leave";
 import Card from "./components/Card";
 function App() {
+
+  
   return (
     <div className="w-[100%]  h-[100vh]  ">
       <Navbar />

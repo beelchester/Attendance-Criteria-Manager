@@ -6,24 +6,63 @@ const Navbar = () => {
   function toggleAddSub() {
     setAddSub((prev) => !prev);
   }
-  const subPopup = addSub ? (
+
+  const [subData, setSubData] = useState({
+    name: "",
+    classesAttended: "",
+    totalClasses: "",
+  });
+  function handleAddSubChange(event) {
+    setSubData((prevData) => {
+      return {
+        ...prevData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+  function handleAddSubSubmit(event) {
+    event.preventDefault()
+    toggleAddSub()
+    console.log(subData)
+    console.log((subData.classesAttended / subData.totalClasses )*100+'%')
+
+}  const subPopup = addSub ? (
     <Popup>
-      <form className="flex flex-col ">
+      <form className="flex flex-col">
         <h3 className="text-white font-poppins font-semibold">Subject Name:</h3>
-        <input type="text" className="rounded px-3 mt-3 mb-6" />
+        <input
+          type="text"
+          name="name"
+          onChange={handleAddSubChange}
+          className="rounded px-3 mt-3 mb-6"
+          value={subData.name}
+        />
         <h3 className="text-white font-poppins font-semibold">
           Classes Attended:
         </h3>
         <div className="flex items-center justify-start mb-6">
-          <input type="text" className="rounded px-3 my-3 mr-3 w-16" />
+          <input
+            name="classesAttended"
+            onChange={handleAddSubChange}
+            type="text"
+            className="rounded px-3 my-3 mr-3 w-16"
+            value={subData.classesAttended}
+          />
           <h3 className="text-white font-poppins"> Out Of</h3>
-          <input type="text" className="rounded px-3 ml-3 my-3 w-16" />
+          <input
+            name="totalClasses"
+            onChange={handleAddSubChange}
+            type="text"
+            className="rounded px-3 ml-3 my-3 w-16"
+            value={subData.totalClasses}
+          />
         </div>
         <button
           className="w-20 h-12 text-black bg-accent rounded-lg font-poppins font-semibold"
-          onClick={toggleAddSub}
+          
+          onClick={handleAddSubSubmit}  
         >
-          click
+          Apply
         </button>
       </form>
     </Popup>
