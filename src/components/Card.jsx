@@ -50,7 +50,7 @@ const Card = (props) => {
       {/* <h3 className='text-greenT font-sans font-semibold'>82%</h3> */}
       {percentText}
       <h3 className=" font-sans font-semibold my-3 text-white">
-        You need to attend atleast the next {classesRequired} classes
+        {roundedPercent >=75?`Keep maintaining the attendance :)`:`You need to attend atleast the next ${classesRequired} classes`}
       </h3>
       <button
         onClick={toggleEditCard}
