@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Popup from "./Popup";
 
-const Card = () => {
+const Card = (props) => {
+
   const [editCard, setEditCard] = useState(false);
 
   function toggleEditCard() {
@@ -31,16 +32,25 @@ const Card = () => {
   ) : (
     ""
   );
+  const percent = (props.classesAttended / props.totalClasses )*100
+  const roundedPercent = parseFloat(percent).toFixed(2)
+  const percentText = roundedPercent>= 75 ?(<h3 className="text-greenT font-sans font-semibold mt-8">{roundedPercent+'%'}</h3>):(<h3 className="text-redT font-sans font-semibold mt-8">{roundedPercent+'%'}</h3>)
+  const a = props.classesAttended
+  const b = props.totalClasses
+  const c = 0.75 * b
+  const d = c.toFixed(0)
+  const classesRequired = d-a
+  console.log(classesRequired)
   return (
     <div className="h-[18rem] w-[18rem] bg-[#090d11bd] rounded-xl ring ring-[#0000007c] p-3 text-center">
       {editPopup}
       <h1 className="text-[#a0c4f0] font-poppins font-semibold uppercase text-3xl mt-2  ">
-        DSA
+        {props.name}
       </h1>
       {/* <h3 className='text-greenT font-sans font-semibold'>82%</h3> */}
-      <h3 className="text-redT font-sans font-semibold mt-8">68%</h3>
+      {percentText}
       <h3 className=" font-sans font-semibold my-3 text-white">
-        You need to attend atleast the next 3 classes
+        You need to attend atleast the next {classesRequired} classes
       </h3>
       <button
         onClick={toggleEditCard}

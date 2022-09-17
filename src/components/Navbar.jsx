@@ -24,7 +24,7 @@ const Navbar = (props) => {
     event.preventDefault()
     toggleAddSub()
     props.onClk(newSubData)
-    console.log((newSubData.classesAttended / newSubData.totalClasses )*100+'%')
+   
     setNewSubData((prevData) => {
       return {
           name: "",
