@@ -35,6 +35,9 @@ const Navbar = (props) => {
       };
     });
 }  
+function preventDefault(){
+  event.preventDefault()
+}
 const subPopup = addSub ? (
     <Popup>
       <div className="flex flex-col  items-center h-[100%] ">
@@ -79,7 +82,7 @@ const subPopup = addSub ? (
         <button
           className="w-20 h-12 text-black bg-accent rounded-lg font-poppins font-semibold mt-1"
           
-          onClick={handleAddSubSubmit}  
+          onClick={event.target.name === ""? preventDefault : handleAddSubSubmit}  
         >
           Apply
         </button>
