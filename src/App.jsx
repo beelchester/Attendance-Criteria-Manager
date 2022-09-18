@@ -19,6 +19,7 @@ function App() {
     }
 })
 
+console.log(subData)
   
   return (
     <div className="w-[100%]  h-[100vh]  ">

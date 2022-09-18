@@ -8,6 +8,7 @@ const Navbar = (props) => {
   }
 
   const [newSubData, setNewSubData] = useState({
+    id:"",
     name: "",
     classesAttended: "",
     totalClasses: "",
@@ -16,6 +17,7 @@ const Navbar = (props) => {
     setNewSubData((prevData) => {
       return {
         ...prevData,
+        id: Math.random().toString(),
         [event.target.name]: event.target.value,
       };
     });
@@ -24,9 +26,9 @@ const Navbar = (props) => {
     event.preventDefault()
     toggleAddSub()
     props.onClk(newSubData)
-   
     setNewSubData((prevData) => {
       return {
+          id:"",
           name: "",
           classesAttended: "",
           totalClasses: "",
@@ -35,8 +37,18 @@ const Navbar = (props) => {
 }  
 const subPopup = addSub ? (
     <Popup>
-      <form className="flex flex-col">
-        <h3 className="text-white font-poppins font-semibold">Subject Name:</h3>
+      <div className="flex flex-col  items-center h-[100%] ">
+      <div className=" w-[100%] flex justify-end ">
+        <button
+          className="w-9 h-9 font-semibold font-poppins text-2xl  mt-4 mr-4 text-redT "
+          onClick={toggleAddSub}
+        >
+          X
+        </button>
+      </div>
+
+      <form className="flex flex-col  justify-center items-center w-[100%] h-[100%]">
+        <h3 className="text-white font-poppins font-semibold mt-[-3rem]">Subject Name:</h3>
         <input
           type="text"
           name="name"
@@ -65,13 +77,14 @@ const subPopup = addSub ? (
           />
         </div>
         <button
-          className="w-20 h-12 text-black bg-accent rounded-lg font-poppins font-semibold"
+          className="w-20 h-12 text-black bg-accent rounded-lg font-poppins font-semibold mt-1"
           
           onClick={handleAddSubSubmit}  
         >
           Apply
         </button>
       </form>
+      </div>
     </Popup>
   ) : (
     ""

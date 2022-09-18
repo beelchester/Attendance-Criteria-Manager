@@ -7,7 +7,7 @@ const CardContainer = (props) => {
   return <div className='className=" grid lg:grid-cols-4 md:grid-cols-3 ss:grid-cols-2 grid-cols-1 gap-[50px] mb-6'>
      {props.subData.map((item) => (
          <Card
-          //  key={item.id}
+           key={item.id}
            name={item.name}
            classesAttended={item.classesAttended}
            totalClasses={item.totalClasses}
