@@ -8,54 +8,100 @@ const Card = (props) => {
     setEditCard((prev) => !prev);
   }
 
-function cardDeleteHandler(){
-  toggleEditCard()
-  props.delete(props.id)  
-}
+  function cardDeleteHandler() {
+    toggleEditCard();
+    props.delete(props.id);
+  }
+
+  const [editSubData, setEditSubData] = useState({
+    id: props.id,
+    name: props.name,
+    classesAttended: props.classesAttended,
+    totalClasses: props.totalClasses,
+  });
+
+  function handleEditChange(event) {
+    setEditSubData((prevData) => {
+      return {
+        ...prevData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+
+  function handleEditSubmit(event) {
+    event.preventDefault();
+    toggleEditCard();
+    props.onClk(editSubData);
+    setEditSubData((prevData) => {
+      return {
+        id: props.id,
+        name: props.name,
+        classesAttended: props.classesAttended,
+        totalClasses: props.totalClasses,
+      };
+    });
+  }
+
 
   const editPopup = editCard ? (
     <Popup>
       <div className="flex flex-col  items-center h-[100%] ">
-      <div className=" w-[100%] flex justify-end ">
-        <button
-          className="w-9 h-9 font-semibold font-poppins text-2xl  mt-4 mr-4 text-redT "
-          onClick={toggleEditCard}
-        >
-          X
-        </button>
-      </div>
-
-      <form className="flex flex-col  justify-center items-center w-[100%] h-[100%] ">
-        <h3 className="text-white font-poppins font-semibold mt-[-3rem] ">Subject Name:</h3>
-        <input
-          value={props.name}
-          type="text"
-          className="rounded px-3 mt-3 mb-6"
-        />
-        <h3 className="text-white font-poppins font-semibold">
-          Classes Attended:
-        </h3>
-        <div className="flex items-center justify-start mb-6">
-          <input type="text" className="rounded px-3 my-3 mr-3 w-16" />
-          <h3 className="text-white font-poppins"> Out Of</h3>
-          <input type="text" className="rounded px-3 ml-3 my-3 w-16" />
-        </div>
-        <div className="flex justify-evenly w-[45%] ">
-
-        <button
-          className="w-20 h-12 bg-redT rounded-lg font-poppins font-semibold mt-1"
-          onClick={cardDeleteHandler}
-        >
-          Delete
-        </button>
-        <button
-          className="w-20 h-12 bg-accent rounded-lg font-poppins font-semibold mt-1"
-          onClick={toggleEditCard}
+        <div className=" w-[100%] flex justify-end ">
+          <button
+            className="w-9 h-9 font-semibold font-poppins text-2xl  mt-4 mr-4 text-redT "
+            onClick={toggleEditCard}
           >
-          Apply
-        </button>
+            X
+          </button>
+        </div>
+
+        <form className="flex flex-col  justify-center items-center w-[100%] h-[100%] ">
+          <h3 className="text-white font-poppins font-semibold mt-[-3rem] ">
+            Subject Name:
+          </h3>
+          <input
+            name="name"
+            onChange={handleEditChange}
+            value={editSubData.name}
+            type="text"
+            className="rounded px-3 mt-3 mb-6"
+          />
+          <h3 className="text-white font-poppins font-semibold">
+            Classes Attended:
+          </h3>
+          <div className="flex items-center justify-start mb-6">
+            <input
+              type="text"
+              value={editSubData.classesAttended}
+              className="rounded px-3 my-3 mr-3 w-16"
+              name="classesAttended"
+              onChange={handleEditChange}
+            />
+            <h3 className="text-white font-poppins"> Out Of</h3>
+            <input
+            value={editSubData.totalClasses}
+             name="totalClasses"
+              type="text"
+              className="rounded px-3 ml-3 my-3 w-16"
+              onChange={handleEditChange}
+            />
           </div>
-      </form>
+          <div className="flex justify-evenly w-[45%] ">
+            <button
+              className="w-20 h-12 bg-redT rounded-lg font-poppins font-semibold mt-1"
+              onClick={cardDeleteHandler}
+            >
+              Delete
+            </button>
+            <button
+              className="w-20 h-12 bg-accent rounded-lg font-poppins font-semibold mt-1"
+              onClick={handleEditSubmit}
+            >
+              Apply
+            </button>
+          </div>
+        </form>
       </div>
     </Popup>
   ) : (

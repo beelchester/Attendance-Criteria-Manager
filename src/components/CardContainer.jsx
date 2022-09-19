@@ -17,6 +17,7 @@ const CardContainer = (props) => {
            classesAttended={item.classesAttended}
            totalClasses={item.totalClasses}
            delete = {cardDeleteHandler}
+           onClk={props.onClk}
          />
        ))}
    </div>

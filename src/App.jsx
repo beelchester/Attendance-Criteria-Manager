@@ -22,22 +22,23 @@ function App() {
     }
   });
 
-    console.log(subData); 
-    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
-  
+  console.log(subData);
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+
   function deleteHandler(id) {
     let index = subData.findIndex((obj) => obj.id == id);
     console.log(index);
     subData.splice(index, 1);
-    forceUpdate() //saviour T-T
-    subData.length === 0 ? (
-      ""
-    ):(
-        setSubData(
-          subData
-          )
-          )
-        
+    forceUpdate(); //saviour T-T
+    subData.length === 0 ? "" : setSubData(subData);
+  }
+  function edit(object) {
+    let id = object.id;
+    let index = subData.findIndex((obj) => obj.id == id);
+    subData[index] = object;
+    forceUpdate();
+
+    setSubData(subData);
   }
   return (
     <div className="w-[100%]  h-[100vh]  ">
@@ -51,7 +52,7 @@ function App() {
         </div>
       )}
       <div className="flex justify-center mt-20 mx-7 ">
-        <CardContainer delete={deleteHandler} subData={subData} />
+        <CardContainer onClk={edit} delete={deleteHandler} subData={subData} />
       </div>
     </div>
   );
