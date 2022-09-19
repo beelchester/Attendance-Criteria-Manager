@@ -1,10 +1,10 @@
-import { useState, useReducer, React } from "react";
+import { useState,useEffect, useReducer, React } from "react";
 import Navbar from "./components/Navbar";
 import Heading from "./components/Heading";
 import Leave from "./components/Leave";
 import CardContainer from "./components/CardContainer";
 function App() {
-  const [subData, setSubData] = useState([]);
+  const [subData, setSubData] = useState(JSON.parse(localStorage.getItem("subData")) || []);
   function click(object) {
     setSubData((prev) => {
       return [...prev, object];
@@ -40,6 +40,7 @@ function App() {
 
     setSubData(subData);
   }
+localStorage.setItem("subData", JSON.stringify(subData))
   return (
     <div className="w-[100%]  h-[100vh]  ">
       <Navbar onClk={click} />
