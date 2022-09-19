@@ -1,4 +1,4 @@
-import { useState, useEffect, React, Component } from "react";
+import { useState, useReducer, React } from "react";
 import Navbar from "./components/Navbar";
 import Heading from "./components/Heading";
 import Leave from "./components/Leave";
@@ -22,19 +22,23 @@ function App() {
     }
   });
 
-  console.log(subData);
-
-    const [index, setIndex] = useState("");
-
-    function deleteHandler(id) {
-      setIndex(() => subData.findIndex((obj) => obj.id == id));
-      console.log(index);
-      // console.log(subData.splice(index, 1));
-  //     setSubData(()=>{
-
-  // subData.splice(index, 1)});
-    }
-
+    console.log(subData); 
+    const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+  
+  function deleteHandler(id) {
+    let index = subData.findIndex((obj) => obj.id == id);
+    console.log(index);
+    subData.splice(index, 1);
+    forceUpdate() //saviour T-T
+    subData.length === 0 ? (
+      ""
+    ):(
+        setSubData(
+          subData
+          )
+          )
+        
+  }
   return (
     <div className="w-[100%]  h-[100vh]  ">
       <Navbar onClk={click} />
