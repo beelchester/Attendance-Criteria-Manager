@@ -1,6 +1,10 @@
 import React from 'react'
 import Card from './Card'
 const CardContainer = (props) => {
+  function cardDeleteHandler(id){
+    props.delete(id)  
+  }
+
   if (props.subData.length === 0) {
     return <h2 className='text-white font-poppins text-md mt-[11rem] '>No content found, Add a subject</h2>;
   }
@@ -8,10 +12,11 @@ const CardContainer = (props) => {
      {props.subData.map((item) => (
          <Card
            key={item.id}
+           id={item.id}
            name={item.name}
            classesAttended={item.classesAttended}
            totalClasses={item.totalClasses}
-           
+           delete = {cardDeleteHandler}
          />
        ))}
    </div>

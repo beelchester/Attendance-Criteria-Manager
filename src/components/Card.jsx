@@ -7,6 +7,12 @@ const Card = (props) => {
   function toggleEditCard() {
     setEditCard((prev) => !prev);
   }
+
+function cardDeleteHandler(){
+  toggleEditCard()
+  props.delete(props.id)  
+}
+
   const editPopup = editCard ? (
     <Popup>
       <div className="flex flex-col  items-center h-[100%] ">
@@ -34,12 +40,21 @@ const Card = (props) => {
           <h3 className="text-white font-poppins"> Out Of</h3>
           <input type="text" className="rounded px-3 ml-3 my-3 w-16" />
         </div>
+        <div className="flex justify-evenly w-[45%] ">
+
+        <button
+          className="w-20 h-12 bg-redT rounded-lg font-poppins font-semibold mt-1"
+          onClick={cardDeleteHandler}
+        >
+          Delete
+        </button>
         <button
           className="w-20 h-12 bg-accent rounded-lg font-poppins font-semibold mt-1"
           onClick={toggleEditCard}
-        >
+          >
           Apply
         </button>
+          </div>
       </form>
       </div>
     </Popup>
