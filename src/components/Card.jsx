@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Popup from "./Popup";
 
 const Card = (props) => {
@@ -16,8 +16,8 @@ const Card = (props) => {
   const [editSubData, setEditSubData] = useState({
     id: props.id,
     name: props.name,
-    classesAttended: props.classesAttended,
-    totalClasses: props.totalClasses,
+    classesAttended: parseInt(props.classesAttended),
+    totalClasses: parseInt(props.totalClasses),
   });
 
   function handleEditChange(event) {
@@ -33,14 +33,7 @@ const Card = (props) => {
     event.preventDefault();
     toggleEditCard();
     props.onClk(editSubData);
-    setEditSubData((prevData) => {
-      return {
-        id: props.id,
-        name: props.name,
-        classesAttended: props.classesAttended,
-        totalClasses: props.totalClasses,
-      };
-    });
+
   }
 
 
@@ -107,8 +100,34 @@ const Card = (props) => {
   ) : (
     ""
   );
-  const a = parseInt(props.classesAttended);
-  const b = parseInt(props.totalClasses);
+  const [addClassButton, setaddClassButton] = useState(false)
+function toggleAddClass(){
+  setaddClassButton(prev => !prev)
+}
+function yesHandler(){
+
+     setEditSubData((prevData) => {
+      return {
+        ...prevData,
+        classesAttended: parseInt(props.classesAttended)+1,
+        totalClasses: parseInt(props.totalClasses)+1,
+      };
+    });
+    props.onClk(editSubData);
+  }
+function noHandler(){
+  // toggleAddClass()
+  setEditSubData((prevData) => {
+    return {
+      ...prevData,
+      totalClasses: parseInt(props.totalClasses)+1,
+    };
+  });
+props.onClk(editSubData);
+
+}
+let a = parseInt(props.classesAttended);
+let b = parseInt(props.totalClasses);
   const percent = (props.classesAttended / props.totalClasses) * 100;
   const roundedPercent = parseFloat(percent).toFixed(2);
   const percentText =
@@ -131,6 +150,15 @@ const Card = (props) => {
       break;
     }
   }
+  const addClass = <div className="flex flex-col items-start ml-6">
+    <h3 className="text-white font-bold mt-[2px] text-sm animate-pulse"> Did you attend it?</h3>   
+    <div className="flex  w-[7rem] justify-around ">
+    <button className="text-greenT mr-1 font-semibold text-[13px] " onClick={yesHandler}>Yes</button>
+    <button className="text-redT mr-1 font-semibold text-[13px]"onClick={noHandler}>No</button>
+    </div>
+  </div> 
+const dynMt = roundedPercent >= 75 ? ("mt-9"):("mt-3")
+
   return (
     <div className="h-[18rem] w-[18rem] bg-[#090d11bd] rounded-xl ring ring-[#0000007c] p-3 text-center">
       {editPopup}
@@ -146,13 +174,29 @@ const Card = (props) => {
           ? `Keep maintaining the attendance :)`
           : `You need to attend atleast the next ${classesRequired} classes`}
       </h3>
+        <div className="flex justify-around ">
+
+        <div className="flex flex-col ">
+
+      <button
+        onClick={toggleAddClass}
+        className={`bg-[#f1f1f1f1] h-10 px-4 text-sm ${dynMt} rounded-lg font-poppins font-semibold`}
+        >
+        Add a Class
+      </button>
+
+          </div>
       <button
         onClick={toggleEditCard}
-        className="bg-[#fee715e3] h-10 px-4 text-sm mt-9 rounded-lg font-poppins font-semibold"
+        className={`bg-[#fee715e3] h-10 px-4 text-sm ${dynMt} rounded-lg font-poppins font-semibold`}
       >
         Edit
       </button>
-    </div>
+      
+        </div>
+        {addClassButton ? addClass : ""}
+        </div>
+
   );
 };
 

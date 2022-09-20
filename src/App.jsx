@@ -37,7 +37,7 @@ function App() {
     let index = subData.findIndex((obj) => obj.id == id);
     subData[index] = object;
     forceUpdate();
-
+    
     setSubData(subData);
   }
 localStorage.setItem("subData", JSON.stringify(subData))
