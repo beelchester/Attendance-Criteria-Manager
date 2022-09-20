@@ -154,7 +154,7 @@ let b = parseInt(props.totalClasses);
   }
   const addClass = <div className="flex flex-col items-start ml-6">
     <div className="flex items-center">
-    <h3 className="text-white font-bold mt-[2px] text-sm animate-pulse"> Did you attend it?</h3>   
+    <h3 className="text-white font-bold mt-[2px] text-sm "> Did you attend it?</h3>   
     <div className="fixed">
     {/* <p className="text-white text-[10px] relative left-[7.2rem] top-[1.3rem] ">*Bug Alert* Please click twice</p> */}
     </div>
