@@ -9,9 +9,9 @@ props.redSubs.map((item) => {
   const percent = (item.classesAttended / item.totalClasses )*100
   const roundedPercent = parseFloat(percent).toFixed(2)
   redSub.length === 0 ?(
-    redSub.push(`${item.name} - ${roundedPercent}%`)
+    redSub.push(`${item.name.toUpperCase()} - ${roundedPercent}%`)
     ):(
-      redSub.push(` , ${item.name} - ${roundedPercent}%`)
+      redSub.push(` , ${item.name.toUpperCase()} - ${roundedPercent}%`)
     )
 })
 
