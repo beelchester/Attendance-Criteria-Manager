@@ -151,7 +151,12 @@ let b = parseInt(props.totalClasses);
     }
   }
   const addClass = <div className="flex flex-col items-start ml-6">
+    <div className="flex items-center">
     <h3 className="text-white font-bold mt-[2px] text-sm animate-pulse"> Did you attend it?</h3>   
+    <div className="fixed">
+    <p className="text-white text-[10px] relative left-[7.2rem] top-[1.3rem] ">*Bug alert* Please click twice</p>
+    </div>
+    </div>
     <div className="flex  w-[7rem] justify-around ">
     <button className="text-greenT mr-1 font-semibold text-[13px] " onClick={yesHandler}>Yes</button>
     <button className="text-redT mr-1 font-semibold text-[13px]"onClick={noHandler}>No</button>
