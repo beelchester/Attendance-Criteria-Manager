@@ -6,6 +6,7 @@ const Card = (props) => {
 
   function toggleEditCard() {
     setEditCard((prev) => !prev);
+    setaddClassButton(false)
   }
 
   function cardDeleteHandler() {
@@ -102,6 +103,7 @@ const Card = (props) => {
   );
   const [addClassButton, setaddClassButton] = useState(false)
 function toggleAddClass(){
+
   setaddClassButton(prev => !prev)
 }
 function yesHandler(){
