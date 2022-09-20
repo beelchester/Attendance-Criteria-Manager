@@ -49,7 +49,7 @@ localStorage.setItem("subData", JSON.stringify(subData))
       ) : (
         <div className="my-8 flex justify-between items-center">
           <Heading condition={headCondition} redSubs={redSubs} />
-          <Leave />
+          <Leave subData={subData}/>
         </div>
       )}
       <div className="flex justify-center mt-20 mx-7 ">
