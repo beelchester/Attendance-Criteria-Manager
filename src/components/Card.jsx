@@ -154,7 +154,7 @@ let b = parseInt(props.totalClasses);
     <div className="flex items-center">
     <h3 className="text-white font-bold mt-[2px] text-sm animate-pulse"> Did you attend it?</h3>   
     <div className="fixed">
-    <p className="text-white text-[10px] relative left-[7.2rem] top-[1.3rem] ">*Bug alert* Please click twice</p>
+    <p className="text-white text-[10px] relative left-[7.2rem] top-[1.3rem] ">*Bug Alert* Please click twice</p>
     </div>
     </div>
     <div className="flex  w-[7rem] justify-around ">
