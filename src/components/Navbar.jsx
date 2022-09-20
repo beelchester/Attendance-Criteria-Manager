@@ -96,7 +96,7 @@ const subPopup = addSub ? (
     <div>
       {subPopup}
       <nav className="font-poppins font-semibold h-[60px]  flex  flex-row  justify-between px-7 py-14  bg-secondary ">
-        <h1 className="text-[28px] flex items-center text-white ">
+        <h1 className="text-[28px] flex items-center text-white sm:mt-0 mt-1 ">
           Attendance Criteria Manager
         </h1>
         <div className="flex items-center ">
