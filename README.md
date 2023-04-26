@@ -27,4 +27,4 @@ If you'd like to contribute to Attendance Criteria Manager, please follow these 
 If you encounter any bugs or have a feature request, please open an issue in the [Issues](https://github.com/sahilyeole/Attendance-Criteria-Manager/issues) section of this repository.
 
 ### License
-Attendance Criteria Manager is licensed under the [MIT License](https://github.com/sahilyeole/Attendance-Criteria-Manager/blob/master/LICENSE).
+Attendance Criteria Manager is licensed under the [MIT License](https://github.com/sahilyeole/Attendance-Criteria-Manager/blob/main/LICENSE).
