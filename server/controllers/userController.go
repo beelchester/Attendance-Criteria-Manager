@@ -79,6 +79,20 @@ func Signup() gin.HandlerFunc {
         user.UserID = user.ID.Hex()
         user.Token = nil
         user.RefreshToken = nil
+        user.Subjects = []*models.Subject{}
+
+        // id := "1"
+        // name := "Maths"
+        // totalClasses := 10
+        // attendedClasses := 5
+        // sub1 := models.Subject{
+        //     ID: primitive.NewObjectID(),
+        //     SubID: id,
+        //     SubName: &name,
+        //     TotalClasses: &totalClasses,
+        //     AttendedClasses: &attendedClasses,
+        // }
+        // user.Subjects = append(user.Subjects, &sub1)
 
         insertIdResult, insertErr := userCollection.InsertOne(ctx, user)
 		if insertErr !=nil {

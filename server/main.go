@@ -18,6 +18,7 @@ func main() {
 
     routes.AuthRoutes(router)
     routes.UserRoutes(router)
+    routes.SubjectRoutes(router)
 
     router.GET("/api", func (c *gin.Context) {
         c.JSON(200, gin.H{
