@@ -4,6 +4,7 @@ import (
 	routes "github.com/sahilyeole/attendance-criteria-manager/server/routes"
 	"os"
 	"github.com/gin-gonic/gin"
+    "github.com/gin-contrib/cors"
 )
 
 func main() {
@@ -15,6 +16,11 @@ func main() {
 
     router := gin.New()
     router.Use(gin.Logger())
+
+    config := cors.DefaultConfig()
+config.AllowOrigins = []string{"http://localhost:3000"}
+router.Use(cors.New(config))
+
 
     routes.AuthRoutes(router)
     routes.UserRoutes(router)

@@ -11,6 +11,6 @@ type User struct {
     Email       *string             `bson:"email" validate:"required,email"`
     Password    *string             `bson:"password" validate:"required,min=6,max=50"`
     Token       *string             `bson:"token"`
-    RefreshToken *string            `bson:"refreshToken"`
+    RefreshToken *string            `bson:"refresh_token"`
     Subjects []*Subject             `bson:"subjects"`
 }

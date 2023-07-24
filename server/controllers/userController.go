@@ -8,8 +8,10 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+
 	// helper "github.com/sahilyeole/attendance-criteria-manager/server/helpers"
 	"github.com/sahilyeole/attendance-criteria-manager/server/database"
+	"github.com/sahilyeole/attendance-criteria-manager/server/helpers"
 	"github.com/sahilyeole/attendance-criteria-manager/server/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -17,7 +19,7 @@ import (
 
 	// "go.mongodb.org/mongo-driver/mongo/options"
 	"github.com/go-playground/validator/v10"
-    "golang.org/x/crypto/bcrypt"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var userCollection *mongo.Collection = database.OpenCollection(database.Client, "user")
@@ -73,6 +75,8 @@ func Signup() gin.HandlerFunc {
         }
 
         password := HashPassword(*user.Password)
+
+
 		user.Password = &password
 
         user.ID = primitive.NewObjectID()
@@ -81,18 +85,6 @@ func Signup() gin.HandlerFunc {
         user.RefreshToken = nil
         user.Subjects = []*models.Subject{}
 
-        // id := "1"
-        // name := "Maths"
-        // totalClasses := 10
-        // attendedClasses := 5
-        // sub1 := models.Subject{
-        //     ID: primitive.NewObjectID(),
-        //     SubID: id,
-        //     SubName: &name,
-        //     TotalClasses: &totalClasses,
-        //     AttendedClasses: &attendedClasses,
-        // }
-        // user.Subjects = append(user.Subjects, &sub1)
 
         insertIdResult, insertErr := userCollection.InsertOne(ctx, user)
 		if insertErr !=nil {
@@ -130,6 +122,18 @@ passwordIsValid := VerifyPassword(*user.Password, *foundUser.Password)
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "email or password is incorrect"})
 			return
 		}
+
+        token,refToken,_ := helpers.GenerateToken(*foundUser.Email, *foundUser.Name, foundUser.UserID) 
+        foundUser.Token = &token
+        foundUser.RefreshToken = &refToken
+
+
+        err = userCollection.FindOneAndUpdate(ctx, bson.M{"email":user.Email}, bson.M{"$set": bson.M{"token":foundUser.Token, "refresh_token":foundUser.RefreshToken}}).Decode(&foundUser)
+
+        if err != nil {
+            c.JSON(http.StatusInternalServerError, gin.H{"error": "error occured while updating the token"})
+            return
+        }
 
         c.JSON(http.StatusOK, foundUser)
     }
