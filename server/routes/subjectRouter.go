@@ -18,6 +18,7 @@ func SubjectRoutes (incomingRoutes *gin.Engine) {
     incomingRoutes.POST("/subjects/create", controller.CreateSubject())
     incomingRoutes.PATCH("/subjects/update", controller.UpdateSubject())
     incomingRoutes.DELETE("/subjects/delete", controller.DeleteSubject())
+    incomingRoutes.GET("/subjects/get", controller.GetSubjects())
 
 }
 

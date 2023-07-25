@@ -93,6 +93,9 @@ func UpdateSubject() gin.HandlerFunc {
                 sub.SubName = subject.SubName
                 sub.TotalClasses = subject.TotalClasses
                 sub.AttendedClasses = subject.AttendedClasses
+                c.JSON(200, gin.H{
+                    "message": user.Subjects,
+                })
            }
        }
 
@@ -105,9 +108,6 @@ func UpdateSubject() gin.HandlerFunc {
           }
             userCollection.FindOneAndUpdate(ctx, bson.M{"user_id": userID}, bson.M{"$set": bson.M{"subjects": user.Subjects}})
             
-            c.JSON(200, gin.H{
-                "message": user.Subjects,
-            })
 
     }
 }
@@ -154,7 +154,7 @@ func DeleteSubject() gin.HandlerFunc {
     }
 }
 
-func SyncSubjects() gin.HandlerFunc {
+func GetSubjects() gin.HandlerFunc {
     return func(c *gin.Context) {
         userId := c.Param("user_id")
 
