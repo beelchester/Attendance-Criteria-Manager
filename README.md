@@ -1,30 +1,34 @@
-# Attendance-Criteria-Manager
-## Attendance tracker app for students
-Designed specifically for students, this app simplifies the task of tracking and managing attendance.
-It ensures minimum mandatory attendance requirements are met.
-It also includes an algorithm that calculates the number of classes students need to attend if they have not met the minimum attendance criteria.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Tools Used
-React, TailwindCSS
+## Getting Started
 
-## Live Preview
-Check out the live preview of Attendance Criteria Manager here: https://attendance-criteria-manager.netlify.app/
+First, run the development server:
 
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-https://user-images.githubusercontent.com/73148455/234527575-9106c9d4-b920-4ba1-abc5-2bbcec72d51c.mp4
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-### Contributing
-If you'd like to contribute to Attendance Criteria Manager, please follow these steps:
-1. Fork the repository
-2. Create a new branch
-3. Make your changes and commit them
-4. Push your changes to your forked repository
-5. Open a pull request
+## Learn More
 
-### Bug Reports and Feature Requests
-If you encounter any bugs or have a feature request, please open an issue in the [Issues](https://github.com/sahilyeole/Attendance-Criteria-Manager/issues) section of this repository.
+To learn more about Next.js, take a look at the following resources:
 
-### License
-Attendance Criteria Manager is licensed under the [MIT License](https://github.com/sahilyeole/Attendance-Criteria-Manager/blob/main/LICENSE).
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
