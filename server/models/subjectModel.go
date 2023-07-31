@@ -6,7 +6,6 @@ import (
 
 type Subject struct {
     ID          primitive.ObjectID  `bson:"_id,omitempty"`     
-    SubID       string              `bson:"sub_id"`
     SubName     *string             `bson:"sub_name" validate:"required,min=2,max=50"`
     TotalClasses *int               `bson:"total_classes" validate:"required"`
     AttendedClasses *int            `bson:"attended_classes" validate:"required"`

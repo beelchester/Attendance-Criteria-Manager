@@ -36,7 +36,7 @@ export async function updateSubject(
     userId: String,
     subject: Subject){
         try {
-            let res = await axios.patch(`http://localhost:9000/subjects/update?user_id=${userId}&sub_id=${subject.SubID}`, {
+            let res = await axios.patch(`http://localhost:9000/subjects/update?user_id=${userId}&sub_id=${subject.ID}`, {
                 SubName: subject.SubName,
                 TotalClasses : subject.TotalClasses,
                 AttendedClasses:subject.AttendedClasses

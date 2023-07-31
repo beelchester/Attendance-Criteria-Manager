@@ -1,5 +1,6 @@
 import axios from "axios"
 import { User } from "../types/User"
+import { GoogleUser } from "../types/GoogleLogin";
 
 
 export async function login(email: string, password: string): Promise<User> {
@@ -10,7 +11,7 @@ export async function login(email: string, password: string): Promise<User> {
         });
         return response.data;
     } catch (err) {
-        throw new Error('Login failed. Please check your credentials and try again.');
+        throw err;
     }
 }
 
@@ -27,6 +28,19 @@ export async function signUp(
     }).then((res) => {
         return res.data
     }).catch((err) => {
-        console.log(err)
+        throw err
     })
 }
+
+export async function googleLogin(
+    user : GoogleUser){
+    await axios.post('http://localhost:9000/users/googleLogin', {
+        Name: user.Name,
+        Email: user.Email,
+        Picture: user.Picture
+    }).then((res) => {
+        return res.data
+    }).catch((err) => {
+        throw err
+    })
+    }

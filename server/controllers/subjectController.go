@@ -43,7 +43,6 @@ func CreateSubject() gin.HandlerFunc {
             }
 
             subject.ID = primitive.NewObjectID()
-            subject.SubID = subject.ID.Hex()
             user.Subjects = append(user.Subjects, &subject)
 
             userCollection.FindOneAndUpdate(ctx, bson.M{"user_id": userID}, bson.M{"$set": bson.M{"subjects": user.Subjects}})
@@ -88,7 +87,7 @@ func UpdateSubject() gin.HandlerFunc {
 
        subExists := false
        for _, sub := range user.Subjects {
-           if sub.SubID == subId {
+           if sub.ID.Hex() == subId {
                 subExists = true
                 sub.SubName = subject.SubName
                 sub.TotalClasses = subject.TotalClasses
@@ -134,7 +133,7 @@ func DeleteSubject() gin.HandlerFunc {
         subExists := false
 
         for i, sub := range user.Subjects {
-            if sub.SubID == subId {
+            if sub.ID.Hex() == subId {
                 subExists = true
                 user.Subjects = append(user.Subjects[:i], user.Subjects[i+1:]...)
             }

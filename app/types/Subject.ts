@@ -1,5 +1,5 @@
 export type Subject = {
-    SubID:string,
+    ID:string,
     SubName: string,
     TotalClasses: number,
     AttendedClasses: number,

@@ -1,9 +1,11 @@
 import { Subject } from "./Subject"
 
 export type User = {
-    UserID: string,
+    ID : string,
     Name: string,
     Email: string,
-    Password: string
-    Subjects: Subject[]
+    Password?: string
+    Picture?: string,
+    Subjects: Subject[],
+    type?: string
 }

@@ -19,9 +19,16 @@ initialState,
       state.value = action.payload
       localStorage.setItem('currentUser', JSON.stringify(state.value))
     },
+    updateCurrentUser:(state,action:PayloadAction<any>) => {
+        state.value = {
+                ...state.value,
+                Subjects: action.payload
+        }
+        localStorage.setItem('currentUser', JSON.stringify(state.value))
+        },
   }
 })
 
-export const { currentUser} = currentUserSlice.actions
+export const {currentUser,updateCurrentUser} = currentUserSlice.actions
 export default currentUserSlice.reducer
 
