@@ -83,7 +83,9 @@ const DashboardClient:React.FC = () => {
 
     function logoutHandler() {
         dispatch(currentUser(null))
-        localStorage.removeItem("currentUser")
+        if (typeof window !== "undefined"){
+            localStorage.removeItem("currentUser")
+        }
         router.push("/login")
     }
 

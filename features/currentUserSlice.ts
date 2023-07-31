@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction}  from "@reduxjs/toolkit"
 import { User } from "../app/types/User"
 
-const current:User = JSON.parse(localStorage.getItem('currentUser')|| '{}')
+const current:User = JSON.parse((typeof window != "undefined" && localStorage.getItem('currentUser'))|| '{}')
 
 interface State{
   value: User
@@ -17,14 +17,18 @@ initialState,
   reducers:{
     currentUser:(state,action:PayloadAction<any>) => {
       state.value = action.payload
-      localStorage.setItem('currentUser', JSON.stringify(state.value))
+      if(typeof window !== 'undefined'){
+          localStorage.setItem('currentUser', JSON.stringify(state.value))
+      }
     },
     updateCurrentUser:(state,action:PayloadAction<any>) => {
         state.value = {
                 ...state.value,
                 Subjects: action.payload
         }
-        localStorage.setItem('currentUser', JSON.stringify(state.value))
+        if(typeof window !== 'undefined'){
+            localStorage.setItem('currentUser', JSON.stringify(state.value))
+        }
         },
   }
 })
